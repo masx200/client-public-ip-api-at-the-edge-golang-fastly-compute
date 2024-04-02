@@ -1,0 +1,10 @@
+# This file describes a Fastly Compute package. To learn more visit:
+# https://www.fastly.com/documentation/reference/compute/fastly-toml
+
+authors = [""]
+cloned_from = "https://fiddle.fastly.dev/fiddle/4ef46d9a"
+description = ""
+language = "go"
+manifest_version = 2
+name = "client-public-ip-api-at-the-edge"
+service_id = "koY80Lsmix8SU9gOhhQjr6"
