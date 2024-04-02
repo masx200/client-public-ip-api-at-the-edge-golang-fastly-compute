@@ -29,3 +29,4 @@ jobs:
           FASTLY_API_TOKEN: ${{ secrets.FASTLY_API_KEY }}
         with:
           token: ${{ secrets.FASTLY_API_KEY }}
+      - run: fastly compute publish --token ${{ secrets.FASTLY_API_KEY }}
