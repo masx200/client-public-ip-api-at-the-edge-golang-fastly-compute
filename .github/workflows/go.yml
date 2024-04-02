@@ -24,6 +24,8 @@ jobs:
         run: go get github.com/fastly/compute-sdk-go@latest
       - name: Build and test
         uses: fastly/compute-actions/build@v5
+        env:
+          FASTLY_API_TOKEN: ${{ secrets.FASTLY_API_KEY }}
         with:
           verbose: true
       - name: Deploy to Compute@Edge
