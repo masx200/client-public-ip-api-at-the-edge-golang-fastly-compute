@@ -26,7 +26,9 @@ jobs:
       - name: Deploy to Compute@Edge
         uses: fastly/compute-actions@v5
         env:
-          FASTLY_API_TOKEN: ${{ secrets.FASTLY_API_KEY }}
+          FASTLY_API_TOKEN: ${{ secrets.FASTLY_API_TOKEN  }}
         with:
-          token: ${{ secrets.FASTLY_API_KEY }}
-      - run: fastly compute publish --token ${{ secrets.FASTLY_API_KEY }}
+          token: ${{ secrets.FASTLY_API_TOKEN  }}
+      - run: fastly compute publish
+        env:
+          FASTLY_API_TOKEN: ${{ secrets.FASTLY_API_TOKEN  }}
