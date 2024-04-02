@@ -27,8 +27,7 @@ jobs:
         uses: fastly/compute-actions@v5
         env:
           FASTLY_API_TOKEN: ${{ secrets.FASTLY_API_TOKEN  }}
-        with:
-          token: ${{ secrets.FASTLY_API_TOKEN  }}
+
       - run: fastly compute publish
         env:
           FASTLY_API_TOKEN: ${{ secrets.FASTLY_API_TOKEN  }}
