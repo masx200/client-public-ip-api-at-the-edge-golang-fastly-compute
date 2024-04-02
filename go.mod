@@ -1,4 +1,4 @@
-module fiddle-go
+module compute-starter-kit-go
 
 go 1.21
 
