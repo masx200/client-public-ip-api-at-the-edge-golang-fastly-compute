@@ -16,6 +16,10 @@ import (
 
 func main() {
 	fsthttp.ServeFunc(func(ctx context.Context, w fsthttp.ResponseWriter, r *fsthttp.Request) {
+
+		w.Header().Add("Alt-Svc", "h3=\":443\"; ma=86400")
+		w.Header().Add("Alt-Svc", "h2=\":443\"; ma=86400")
+		w.Header().Add("Strict-Transport-Security", "max-age=31536000; includeSubDomains")
 		// This requires your service to be configured with a backend
 		// named "origin_0" and pointing to "https://http-me.glitch.me".
 
