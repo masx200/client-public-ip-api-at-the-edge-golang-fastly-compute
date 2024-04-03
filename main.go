@@ -12,7 +12,7 @@ import (
 )
 
 // BackendName is the name of our service backend.
-const BackendName = "origin_0"
+// const BackendName = "origin_0"
 
 func main() {
 	fsthttp.ServeFunc(func(ctx context.Context, w fsthttp.ResponseWriter, r *fsthttp.Request) {
@@ -23,8 +23,15 @@ func main() {
 		// if r.URL.Path == "/api/clientIP" {
 		// Get client IP address
 		ClientIP := r.RemoteAddr
-		resp := make(map[string]string)
-		resp["clientIP"] = ClientIP
+		resp := make(map[string]any)
+
+		resp["method"] = r.Method
+		resp["url"] = r.URL.String()
+
+		resp["client"] = map[string]any{"Address": ClientIP}
+
+		resp["headers"] = r.Header
+		// resp]["Address"] = ClientIP
 		JsonResp, err := json.Marshal(resp)
 		if err != nil {
 			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
@@ -33,7 +40,7 @@ func main() {
 		w.Header().Set("Content-Type", "application/json")
 		// Return 200 OK response
 		w.WriteHeader(fsthttp.StatusOK)
-		return
+		//return
 
 		// }
 		// resp, err := r.Send(ctx, BackendName)
