@@ -24,13 +24,14 @@ func main() {
 		// Get client IP address
 		ClientIP := r.RemoteAddr
 		resp := make(map[string]any)
-
-		resp["method"] = r.Method
-		resp["url"] = r.URL.String()
+		resp["request"] = map[string]any{
+			"method":  r.Method,
+			"url":     r.URL.String(),
+			"headers": r.Header,
+		}
 
 		resp["client"] = map[string]any{"address": ClientIP}
 
-		resp["headers"] = r.Header
 		// resp]["Address"] = ClientIP
 		JsonResp, err := json.Marshal(resp)
 		if err != nil {
