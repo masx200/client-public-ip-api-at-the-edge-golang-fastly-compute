@@ -33,9 +33,9 @@ func main() {
 			resp, err := client.Get("https://hello-word-worker-cloudflare.masx200.workers.dev/")
 
 			if err != nil {
-				log.Printf("Error happened in JSON marshal. Err: %s", err)
+				log.Printf("Error happened in http request. Err: %s", err)
 				w.WriteHeader(fsthttp.StatusBadGateway)
-				w.Write([]byte("Bad Gateway"))
+				w.Write([]byte("Bad Gateway" + "\n" + err.Error()))
 				return
 			}
 			io.Copy(w, resp.Body)
