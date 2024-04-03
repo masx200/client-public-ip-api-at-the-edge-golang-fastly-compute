@@ -28,7 +28,7 @@ func main() {
 		resp["method"] = r.Method
 		resp["url"] = r.URL.String()
 
-		resp["client"] = map[string]any{"Address": ClientIP}
+		resp["client"] = map[string]any{"address": ClientIP}
 
 		resp["headers"] = r.Header
 		// resp]["Address"] = ClientIP
