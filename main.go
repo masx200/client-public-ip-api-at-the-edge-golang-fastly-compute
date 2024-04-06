@@ -3,7 +3,7 @@ package main
 
 import (
 	"context"
-	"io"
+	// "io"
 	// "net/http"
 	// "net/url"
 
@@ -27,48 +27,48 @@ func main() {
 		w.Header().Add("Strict-Transport-Security", "max-age=31536000; includeSubDomains")
 		// This requires your service to be configured with a backend
 		// named "origin_0" and pointing to "https://http-me.glitch.me".
-		if r.URL.Path == "/api/http" {
+		// if r.URL.Path == "/api/http" {
 
-			o := &fsthttp.BackendOptions{}
-			o.UseSSL(true).HostOverride("fastly-compute-hello-world-javascript.edgecompute.app").SNIHostname("fastly-compute-hello-world-javascript.edgecompute.app")
-			b, err := fsthttp.RegisterDynamicBackend(
-				"fastly-compute-hello-world-javascript.edgecompute.app",
-				"fastly-compute-hello-world-javascript.edgecompute.app",
-				o,
-			)
-			if err != nil {
-				log.Printf("Error happened in http request. Err: %s", err)
-				w.WriteHeader(fsthttp.StatusBadGateway)
-				w.Write([]byte("Bad Gateway" + "\n" + err.Error()))
-				return
-			}
-			req, err := fsthttp.NewRequest(r.Method, "https://fastly-compute-hello-world-javascript.edgecompute.app/", nil)
+		// 	o := &fsthttp.BackendOptions{}
+		// 	o.UseSSL(true).HostOverride("fastly-compute-hello-world-javascript.edgecompute.app").SNIHostname("fastly-compute-hello-world-javascript.edgecompute.app")
+		// 	b, err := fsthttp.RegisterDynamicBackend(
+		// 		"fastly-compute-hello-world-javascript.edgecompute.app",
+		// 		"fastly-compute-hello-world-javascript.edgecompute.app",
+		// 		o,
+		// 	)
+		// 	if err != nil {
+		// 		log.Printf("Error happened in http request. Err: %s", err)
+		// 		w.WriteHeader(fsthttp.StatusBadGateway)
+		// 		w.Write([]byte("Bad Gateway" + "\n" + err.Error()))
+		// 		return
+		// 	}
+		// 	req, err := fsthttp.NewRequest(r.Method, "https://fastly-compute-hello-world-javascript.edgecompute.app/", nil)
 
-			if err != nil {
-				log.Printf("Error happened in http request. Err: %s", err)
-				w.WriteHeader(fsthttp.StatusBadGateway)
-				w.Write([]byte("Bad Gateway" + "\n" + err.Error()))
-				return
-			}
-			req.Header = r.Header
-			resp, err := req.Send(ctx, b.Name())
-			if err != nil {
-				log.Printf("Error happened in http request. Err: %s", err)
-				w.WriteHeader(fsthttp.StatusBadGateway)
-				w.Write([]byte("Bad Gateway" + "\n" + err.Error()))
-				return
-			}
-			defer io.Copy(w, resp.Body)
-			w.WriteHeader(resp.StatusCode)
+		// 	if err != nil {
+		// 		log.Printf("Error happened in http request. Err: %s", err)
+		// 		w.WriteHeader(fsthttp.StatusBadGateway)
+		// 		w.Write([]byte("Bad Gateway" + "\n" + err.Error()))
+		// 		return
+		// 	}
+		// 	req.Header = r.Header
+		// 	resp, err := req.Send(ctx, b.Name())
+		// 	if err != nil {
+		// 		log.Printf("Error happened in http request. Err: %s", err)
+		// 		w.WriteHeader(fsthttp.StatusBadGateway)
+		// 		w.Write([]byte("Bad Gateway" + "\n" + err.Error()))
+		// 		return
+		// 	}
+		// 	defer io.Copy(w, resp.Body)
+		// 	w.WriteHeader(resp.StatusCode)
 
-			for k, v := range resp.Header {
-				for _, h := range v {
-					w.Header().Add(k, h)
-				}
+		// 	for k, v := range resp.Header {
+		// 		for _, h := range v {
+		// 			w.Header().Add(k, h)
+		// 		}
 
-			}
-			return
-		}
+		// 	}
+		// 	return
+		// }
 		// If the URL path matches the path below, then return the client IP as a JSON response.
 		// if r.URL.Path == "/api/clientIP" {
 		// Get client IP address
