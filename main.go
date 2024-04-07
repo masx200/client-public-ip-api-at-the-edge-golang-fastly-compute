@@ -87,12 +87,12 @@ func main() {
 		if err != nil {
 			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
 		}
-		w.Write(JsonResp)
+
 		w.Header().Set("Content-Type", "application/json")
 		// Return 200 OK response
 		w.WriteHeader(fsthttp.StatusOK)
 		//return
-
+		w.Write(JsonResp)
 		// }
 		// resp, err := r.Send(ctx, BackendName)
 		// if err != nil {
